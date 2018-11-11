@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://instances/house.gd" type="Script" id=1]
+[ext_resource path="res://images/house_back.png" type="Texture" id=2]
+[ext_resource path="res://images/house_top.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 81.8761, 32.8723 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 27.8099, 29.0331 )
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 18.0404, 12.935 )
+
+[node name="house" type="Node2D"]
+
+script = ExtResource( 1 )
+newUbication = null
+
+[node name="house_back" type="Sprite" parent="." index="0"]
+
+position = Vector2( -0.265701, -0.457588 )
+z_index = -1
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Z Index" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="house_back" index="0"]
+
+position = Vector2( 0.265701, 0.457588 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="house_back/StaticBody2D" index="0"]
+
+position = Vector2( -0.308609, -9.89125 )
+scale = Vector2( 1, 1.17698 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="house_back/StaticBody2D" index="1"]
+
+position = Vector2( -49.685, 35.8384 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="house_back/StaticBody2D" index="2"]
+
+position = Vector2( 52.1286, 37.4674 )
+shape = SubResource( 2 )
+
+[node name="house_top" type="Sprite" parent="." index="1"]
+
+position = Vector2( -0.0182114, -0.281548 )
+z_index = 20
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Area2D" type="Area2D" parent="." index="2"]
+
+position = Vector2( 1.62903, 56.2011 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+position = Vector2( -1.75193, -9.63565 )
+shape = SubResource( 3 )
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+
+
