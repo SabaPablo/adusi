@@ -18,7 +18,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 26.3013, 7.71338 )
 
-[node name="world" type="Node2D" index="0"]
+[node name="world" type="Node2D"]
 
 __meta__ = {
 "_edit_horizontal_guides_": [ 441.261 ],
